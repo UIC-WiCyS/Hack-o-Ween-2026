@@ -1,0 +1,64 @@
+.overview {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    /* width: 967px;
+    height: 567px; */
+    border: 7px solid #812990;
+    background: #EAD3FF;
+    box-shadow: 4px 4px 0 0 #CF9BFF;
+}
+
+.title {
+    color: #ffffff;
+    font-family: "VT323", monospace;
+    font-size: 48px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    margin: 0;
+    margin-bottom: 1rem;
+}
+
+.singleChallenge {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 15px;
+    max-width: 500px;
+    width: 90%;
+    color: var(--WiCyS-Purple, #812990);
+    font-family: Syncopate;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 32px; 
+}
+
+
+/*styling for the whole challenges*/
+.challengeMap {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 25px;
+  justify-content: center;
+  padding-top: 1rem;
+  position: relative;
+  overflow-y: scroll;
+  height: 75vh;
+  scrollbar-color: #1B529B #ffffff00;
+  height: 95%;
+}
+
+.header{
+    display: flex;
+    justify-content: space-between;
+    gap: 2rem;
+    color: #56DFDE;
+    text-align: center;
+    font-family: VT323;
+    font-size: 40px;
+    font-style: normal;
+    font-weight: 400;
+
+}

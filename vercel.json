@@ -1,0 +1,16 @@
+{
+    "cleanUrls": false,
+    "rewrites": [
+        {
+            "source": "/challenges/katherine_launch",
+            "destination": "/challenges/katherine_launch"
+        }
+    ],
+    "routes": [
+        { 
+            "source": "/((?!challenges/|assets/|animalsChallenges/).*)", 
+            "dest": "/", 
+            "status": 200 
+        }
+    ]
+}

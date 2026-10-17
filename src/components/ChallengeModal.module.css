@@ -1,0 +1,40 @@
+#user_flame {
+    text-align: center;
+    border: none;
+    outline: none;
+    width: 50%;
+    color: #1B529B;
+    background: #CF9BFF;
+    border: solid #812990 0.25rem;
+}
+
+.files_download {
+    display: flex; 
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
+    text-align: center;
+    color: #1B529B;
+    background: #B9D8DE;
+    border: solid #1EA6A5 0.25rem;
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+    height: fit-content; 
+    text-align: left;
+}
+
+.files_download:hover {
+    background-color: #1B529B;
+    color: #B9D8DE;
+    text-decoration: underline;
+}
+
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    10%, 30%, 50%, 70%, 90% { transform: translateX(-5px); }
+    20%, 40%, 60%, 80% { transform: translateX(5px); }
+}
+
+.shakey {
+  animation: shake 3s ease-in-out;
+}

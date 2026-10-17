@@ -1,0 +1,16 @@
+.nav_link {
+    text-align: center;
+    color: #1B529B;
+    background: #B9D8DE;
+    border: solid #1EA6A5 0.25rem;
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+    height: fit-content;
+}
+
+.nav_link:hover {
+    background-color: #1B529B;
+    color: #B9D8DE;
+    text-decoration: underline;
+    transform: scale(1.15); 
+}

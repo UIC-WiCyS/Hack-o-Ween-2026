@@ -1,0 +1,97 @@
+.glitch {
+  position: relative;
+  color: #E8D3FF;
+  text-shadow:
+    1px 1px 0 rgba(199, 140, 255, 0.3),
+    2px 2px 0 rgba(199, 140, 255, 0.2);
+  animation: glitch 0.4s infinite;
+}
+
+.glitch::before,
+.glitch::after {
+  content: attr(data-text);
+  position: absolute;
+  left: 0;
+  top: 0;
+  opacity: 0.3;
+}
+
+.glitch::before {
+  animation: glitch-1 0.4s infinite;
+  color: #c08cff;
+  z-index: -1;
+}
+
+.glitch::after {
+  animation: glitch-2 0.4s infinite;
+  color: #c08cff;
+  z-index: -2;
+}
+
+@keyframes glitch {
+  0% {
+    text-shadow: 1px 1px 0 rgba(199, 140, 255, 0.3), 2px 2px 0 rgba(199, 140, 255, 0.2);
+  }
+  50% {
+    text-shadow: 1px 1px 0 rgba(199, 140, 255, 0.2), 2px 2px 0 rgba(199, 140, 255, 0.1);
+  }
+  100% {
+    text-shadow: 1px 1px 0 rgba(199, 140, 255, 0.3), 2px 2px 0 rgba(199, 140, 255, 0.2);
+  }
+}
+
+@keyframes glitch-1 {
+  0% {
+    clip-path: polygon(0 0, 100% 0, 100% 33%, 0 33%);
+    transform: translate(0);
+  }
+  20% {
+    clip-path: polygon(0 33%, 100% 33%, 100% 66%, 0 66%);
+    transform: translate(-2px, 2px);
+  }
+  40% {
+    clip-path: polygon(0 66%, 100% 66%, 100% 100%, 0 100%);
+    transform: translate(2px, -2px);
+  }
+  60% {
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+    transform: translate(-2px, -2px);
+  }
+  100% {
+    clip-path: polygon(0 0, 100% 0, 100% 33%, 0 33%);
+    transform: translate(0);
+  }
+}
+
+@keyframes glitch-2 {
+  0% {
+    clip-path: polygon(0 33%, 100% 33%, 100% 66%, 0 66%);
+    transform: translate(0);
+  }
+  20% {
+    clip-path: polygon(0 66%, 100% 66%, 100% 100%, 0 100%);
+    transform: translate(2px, -2px);
+  }
+  40% {
+    clip-path: polygon(0 0, 100% 0, 100% 33%, 0 33%);
+    transform: translate(-2px, 2px);
+  }
+  60% {
+    clip-path: polygon(0 33%, 100% 33%, 100% 100%, 0 100%);
+    transform: translate(2px, 2px);
+  }
+  100% {
+    clip-path: polygon(0 33%, 100% 33%, 100% 66%, 0 66%);
+    transform: translate(0);
+  }
+}
+
+#login {
+  font-weight: 800;
+  font-style: normal;
+  color: #123B79;
+  text-align: center;
+  border: none;
+  outline: none;
+  width: 100%;
+}
