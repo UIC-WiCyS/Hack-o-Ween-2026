@@ -10,7 +10,7 @@
 
 .title {
   color: #ffffff;
-  font-family: "VT323", monospace;
+  font-family: "Eater", monospace;
   font-size: 48px;
   font-weight: 700;
   letter-spacing: 2px;
@@ -41,7 +41,7 @@
 .question, .question1 {
   color: #1B529B;
   text-align: center;
-  font-family: "VT323", monospace;
+  font-family: "Eater", monospace;
   font-size: 55px;
   font-weight: 900;
   letter-spacing: 3px;
@@ -57,7 +57,7 @@
   max-width: 745px;
   color: #1B529B;
   text-align: center;
-  font-family: "VT323", monospace;
+  font-family: "Eater", monospace;
   font-size: 30px;
   font-weight: 400;
   line-height: 1.2;
@@ -78,7 +78,7 @@
   font-size: large;
   text-decoration: underline;
   transition: color 0.2s ease;
-  font-family: "VT323", monospace;
+  font-family: "Eater", monospace;
 }
 
 .cyberpackLink:hover {
@@ -88,7 +88,7 @@
 .aboutFooter {
   color: #FFF;
   text-align: center;
-  font-family: "Syncopate", sans-serif;
+  font-family: "Eater", sans-serif;
   font-size: 16px;
   font-weight: 700;
   margin-top: auto;

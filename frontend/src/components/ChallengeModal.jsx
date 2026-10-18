@@ -53,12 +53,12 @@ export default function ChallengeModal({session, challenge, callback}) {
     }
 
     return (
-        <div id="challenge-modal" className={`absolute w-3/4 z-1000 top-1/8 left-1/8 h-3/4 overflow-y-scroll text-center bg-[#EAD3FF] border-[#812990] border-4 text-[#812990] font-pixel p-6 px-10 flex flex-col gap-4'`} 
+        <div id="challenge-modal" className={`absolute w-3/4 z-1000 top-1/8 left-1/8 h-3/4 overflow-y-scroll text-center bg-[#EAD3FF] border-[#812990] border-4 text-[#812990] font-eater p-6 px-10 flex flex-col gap-4'`} 
             style={{scrollbarColor: "#1B529B #ffffff00", }}>
             <div className='flex justify-between flex-wrap-reverse text-wrap'>
-                <div className='font-sync text-left text-2xl'>
+                <div className='font-eater text-left text-2xl'>
                     <p className='font-bold'>{challenge.name.toUpperCase()}</p>
-                    <p className='font-pixel text-[#123B79]'>{challenge.category} || {challenge.points} points</p>
+                    <p className='font-eater text-[#123B79]'>{challenge.category} || {challenge.points} points</p>
                 </div>
                    
                 <button onClick={()=>{callback(false)}}>

@@ -36,11 +36,11 @@ export default function ChallengesOverview({session}) {
     
 
     return (
-        <section className='font-sync text-white' style={{height: "75vh"}}>
+        <section className='font-eater text-white' style={{height: "75vh"}}>
             <div className={styles.header}> 
-                <p className='text-left'>Welcome, {session.id.toUpperCase()}</p>
+                <p className='text-left font-eater text-base'>Welcome, {session.id.toUpperCase()}</p>
                 <h1 className={styles.title}>Challenges Overview</h1>
-                <p className='text-right'>Score: {session.score}</p>
+                <p className='text-right font-eater text-base'>Score: {session.score}</p>
             </div>
             
             <div className={styles.challengeMap}> 

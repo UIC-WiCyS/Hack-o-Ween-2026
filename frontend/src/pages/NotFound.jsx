@@ -3,9 +3,9 @@ import heart from "../assets/heart.png";
 
 export default function NotFound() {
     return (
-        <section className="flex flex-col items-center justify-center h-[100vh] font-pixel gap-3 text-white">
-            <h1 className="text-8xl font-sync">404</h1>
-            <h1 className="text-8xl font-sync">Not Found.</h1>
+        <section className="flex flex-col items-center justify-center h-[100vh] font-eater gap-3 text-white">
+            <h1 className="text-8xl font-eater">404</h1>
+            <h1 className="text-8xl font-eater">Not Found.</h1>
             <h3>You found a secret! Here, have a cookie 🍪</h3>
             <h3>Log in to view the challenges</h3>
             <h3>Head back to home: </h3>
@@ -16,9 +16,9 @@ export default function NotFound() {
             </Link>
 
             {/* <3 */}
-            <div className='absolute bottom-0 text-lg text-white text-center justify-self-center font-pixel'>
+            <div className='absolute bottom-0 text-lg text-white text-center justify-self-center font-eater'>
                 <p>Made with <a href="https://github.com/UIC-WiCyS/Hack-o-Ween-2026" target='_blank'>{'<3'}</a> by</p>
-                <p>WiCyS & WiCS</p>
+                <p>WiCyS & LUG</p>
             </div>
         </section>
     )

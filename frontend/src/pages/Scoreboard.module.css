@@ -13,7 +13,7 @@
 
 .title {
   color: #ffffff;
-  font-family: "VT323", monospace;
+  font-family: "Eater", monospace;
   font-size: 48px;
   font-weight: 700;
   letter-spacing: 2px;
@@ -49,7 +49,7 @@
 
 .username {
   color: #ffffff;
-  font-family: "Syncopate", sans-serif;
+  font-family: "Eater", sans-serif;
   font-size: 20px;
   font-weight: 700;
   text-transform: uppercase;
@@ -58,7 +58,7 @@
 
 .points {
   color: #ffffff;
-  font-family: "Syncopate", sans-serif;
+  font-family: "Eater", sans-serif;
   font-size: 20px;
   font-weight: 700;
   letter-spacing: 1px;
@@ -66,7 +66,7 @@
 
 .noScores {
   color: #ffffff;
-  font-family: "Syncopate", sans-serif;
+  font-family: "Eater", sans-serif;
   font-size: 18px;
   margin-top: 2rem;
 }

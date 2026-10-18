@@ -17,7 +17,7 @@ export default function Login({callback}) {
     }
 
     return (
-        <section className="select-none font-pixel text-6xl text-center flex flex-col justify-center items-center">
+        <section className="select-none font-eater text-6xl text-center flex flex-col justify-center items-center">
             <div className='flex fixed left-8 top-8'>
                 <img src={Hearts} style={{height: '3rem', width: 'auto', objectFit: "contain"}}/>
             </div>
@@ -32,7 +32,7 @@ export default function Login({callback}) {
                     Hack-o-Ween
                 </p>
 
-                <form onSubmit={handle_login} className="font-pixel text-[#812990] bg-[#CFEFEF] border-6 p-2 text-3xl text-center">
+                <form onSubmit={handle_login} className="font-eater text-[#812990] bg-[#CFEFEF] border-6 p-2 text-3xl text-center">
                     <input id={styles.login} onChange={e => setInput(e.target.value)} required placeholder="Enter Your Username"/>
                 </form>
 
@@ -54,7 +54,7 @@ export default function Login({callback}) {
             {/* <3 */}
             <div className='absolute text-lg text-white justify-self-end bottom-0'>
                 <p>Made with <a href="https://github.com/UIC-WiCyS/Hack-o-Ween-2026" target='_blank'>{'<3'}</a> by</p>
-                <p>WiCyS & WiCS</p>
+                <p>WiCyS & LUG</p>
             </div>
         </section>
     );
