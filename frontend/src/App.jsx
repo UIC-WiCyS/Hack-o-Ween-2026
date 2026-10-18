@@ -48,25 +48,27 @@ function App() {
                 <Header logout={handle_logout} />
             }
 
-            <Routes>
-                { (cookies.get('user_cookie')===undefined) &&
-                <Route path="/" element={<Login callback={handle_login} />} />
-                }
-                { cookies.get('user_cookie')!=undefined && user && 
-                <Route path="/" element={<ChallengesOverview session={user} />} />
-                }
-                { user && 
-                <Route path="/about" element={<About />} />
-                }
-                { user && 
-                <Route path="/scoreboard" element={<Scoreboard />} />
-                }
+            <section className='mt-24'>
+                <Routes>
+                    { (cookies.get('user_cookie')===undefined) &&
+                    <Route path="/" element={<Login callback={handle_login} />} />
+                    }
+                    { cookies.get('user_cookie')!=undefined && user && 
+                    <Route path="/" element={<ChallengesOverview session={user} />} />
+                    }
+                    { user && 
+                    <Route path="/about" element={<About />} />
+                    }
+                    { user && 
+                    <Route path="/scoreboard" element={<Scoreboard />} />
+                    }
 
-                {/* 404 */}
-                {   (cookies.get('user_cookie')===undefined) &&
-                    <Route path="*" element={<NotFound />} />
-                }
-            </Routes>
+                    {/* 404 */}
+                    {   (cookies.get('user_cookie')===undefined) &&
+                        <Route path="*" element={<NotFound />} />
+                    }
+                </Routes>
+            </section>
         </BrowserRouter>
     )
 }
