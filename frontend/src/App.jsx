@@ -28,12 +28,12 @@ function App() {
         // console.log(user);
     }, []);
     
-    async function handle_login(name) {
-        var data = await login(name);
-        setUser(data)
-        cookies.set('user_cookie', name);
-        // console.log(data)
-    }
+    // async function handle_login(name) {
+    //     var data = await login(name);
+    //     setUser(data)
+    //     cookies.set('user_cookie', name);
+    //     // console.log(data)
+    // }
 
     async function handle_logout() {
         setUser(null);
@@ -41,6 +41,23 @@ function App() {
         // window.location.reload();
     }
 
+    // TODO: fix this
+    const handle_login = async (e) => {
+        // e.preventDefault()
+        // localhost:5000 is where I am running the backend concurrently
+        try {
+            const response = await fetch(`http://localhost:5000/api/challenges`, {
+                method : 'GET'
+            })
+            if (!response.ok) {
+                throw new Error('Error in logging in')
+            }
+            const res = await response.json()
+            // console.log(res)
+        } catch (err) {
+            console.log(err)
+        }
+    }
 
     return (
         <BrowserRouter>

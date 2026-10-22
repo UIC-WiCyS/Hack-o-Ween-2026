@@ -5,6 +5,9 @@ import { Download } from 'lucide-react';
 import Hint from "./Hint"
 import StickyNote from "../assets/sticky_note.png";
 
+import meltyGIF from "../assets/melty.gif";
+
+
 export default function ChallengeModal({session, challenge, callback}) {
     const [userInput, setInput] = useState("");
     const [isCorrect, setModal] = useState("default");
@@ -129,6 +132,24 @@ export default function ChallengeModal({session, challenge, callback}) {
                         <p className='text-red-600'>Incorrect!</p>
                     }
                 </form>
+
+                {/* jumpscares -- 1/5 chance */} 
+                { Math.floor(Math.random() * 5) == 1 &&
+                    <div className='absolute top-1/2'>
+                    {
+                        isCorrect=="empty" &&
+                        <p className='text-red-600'>Incorrect!</p>
+                    }
+                    {
+                        isCorrect=="success" &&
+                        <img src={meltyGIF} />
+                    }
+                    {
+                        isCorrect=="fail" &&
+                        <img src={meltyGIF} />
+                    }
+                    </div>
+                }
             </div>
         </div>
     );

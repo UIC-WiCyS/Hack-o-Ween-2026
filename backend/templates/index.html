@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Index</title>
+</head>
+<body>
+
+    <h1>List</h1>
+    
+    <ul>
+    {% for item in items %}
+        <li>{{ item }}</li>
+    {% else %}
+        <li>No items found.</li>
+    {% endfor %}
+    </ul>
+
+</body>
+</html>
