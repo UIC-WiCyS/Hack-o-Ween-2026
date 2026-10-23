@@ -9,17 +9,35 @@ export default function Scoreboard({}) {
     // fetch data
     useEffect(() => {
         // fetch scoreboard
-        const fetch_scores = async () => {
-            var data = await fetch_scoreboard();
-            if (data != null && data.length > 0)
-            {
-                // update
-                setScore(data);
-            }
-        };
+        // const fetch_scores = async () => {
+        //     var data = await fetch_scoreboard();
+        //     if (data != null && data.length > 0)
+        //     {
+        //         // update
+        //         setScore(data);
+        //     }
+        // };
 
         fetch_scores();
     }, []);
+    
+    const fetch_scores = async (e) => {
+        // e.preventDefault()
+        // localhost:5000 is where backend is running concurrently
+        try {
+            const response = await fetch(`http://localhost:5000/api/scoreboard`, {
+                method : 'GET'
+            })
+            if (!response.ok) {
+                throw new Error('Error in fetching scoreboard')
+            }
+            const res = await response.json()
+            setScore(res)
+            // console.log(res)
+        } catch (err) {
+            console.log(err)
+        }
+    }
 
     return (
         <section style={{height: "75vh"}}>

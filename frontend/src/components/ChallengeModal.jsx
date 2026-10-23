@@ -35,24 +35,48 @@ export default function ChallengeModal({session, challenge, callback}) {
             return;
         }
 
-        var success = await check_answer(session.id, challenge.id, userInput);
-        if (success)
+        try
         {
-            setModal("success")
-            setTimeout(() => {
-                setModal("")
-                callback(false)
-            }, 1500); 
+            // react and flask use different ports so we need to specify the port for the backend
+            const response = await fetch("http://localhost:5000/api/answer", { 
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({"uuid": session.id, "challenge_id": challenge.id, "user_answer": userInput})
+                })
+                // .then(res => res.json())
+                // .then(data => {
+                //     setModal(data['correct']);
+                //     console.log("Fetched Data:", data);
+                // })
+                // .catch(err => console.error("API error:", err));
+            
+            const result = await response.json();
+            setModal(result['correct'])
+
+            // var success = await check_answer(session.id, challenge.id, userInput);
+            if (result['correct']=="success")
+            {
+                // setModal("success")
+                setTimeout(() => {
+                    setModal("")
+                    callback(false)
+                }, 1500); 
+            }
+            else
+            {
+                setModal("fail")
+                document.getElementById("challenge-modal").classList.add(styles.shakey);
+                // shaking animation
+                setTimeout(() => {
+                    document.getElementById("challenge-modal").classList.remove(styles.shakey);
+                    setModal("")
+                }, 3000); 
+            }
         }
-        else
+
+        catch (err) 
         {
-            setModal("fail")
-            document.getElementById("challenge-modal").classList.add(styles.shakey);
-            // shaking animation
-            setTimeout(() => {
-                document.getElementById("challenge-modal").classList.remove(styles.shakey);
-                setModal("")
-            }, 3000); 
+            console.error('Error submitting answer:', err);
         }
     }
 

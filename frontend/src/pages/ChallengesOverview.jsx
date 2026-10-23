@@ -11,14 +11,14 @@ export default function ChallengesOverview({session}) {
     const [openModal, setModal] = useState(false); 
     const [selectedChallenge, setSelectedChallenge] = useState(null);
 
-    const fetch_challenges = async () => {
-        var data = await get_all_challenges();
-        if (data != null)
-        {
-            // update
-            setChallenges(data);
-        }
-    };
+    // const fetch_challenges = async () => {
+    //     var data = await get_all_challenges();
+    //     if (data != null)
+    //     {
+    //         // update
+    //         setChallenges(data);
+    //     }
+    // };
 
     useEffect(() => {    
         // check if session exists
@@ -26,6 +26,25 @@ export default function ChallengesOverview({session}) {
         fetch_challenges();
         setCompleted(session.completed);
     }, [session])
+
+    const fetch_challenges = async (e) => {
+        // e.preventDefault()
+        // localhost:5000 is where I am running the backend concurrently
+        try {
+            const response = await fetch(`http://localhost:5000/api/challenges`, {
+                method : 'GET'
+            })
+            if (!response.ok) {
+                throw new Error('Error in fetching challenges')
+            }
+            const res = await response.json()
+            setChallenges(res)
+            // console.log(res)
+        } catch (err) {
+            console.log(err)
+        }
+    }
+
 
     function handle_solved() {
         setModal(false);
