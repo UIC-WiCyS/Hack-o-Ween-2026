@@ -21,7 +21,7 @@ db = firestore.client()
 
 # Main Flask App
 @app.route("/", methods=['GET', 'POST'])
-def main():
+# def main():
     # check_answer("hi", "chal_1", "test")
     # Create an Event for notifying main thread.
     # callback_done = threading.Event()
@@ -42,7 +42,7 @@ def main():
 
     # Watch the collection query
     # query_watch = col_query.on_snapshot(snapshot)
-    return render_template("index.html", items=fetch_scoreboard())
+    # return render_template("index.html", items=fetch_scoreboard().json)
 
 
 # Function to login with a display name
@@ -153,5 +153,5 @@ def check_answer():
         return f"An error occured with submitting your answer!: {e}"
 
 
-if __name__ == "__main__":
-    main()
+# if __name__ == "__main__":
+#     main()
