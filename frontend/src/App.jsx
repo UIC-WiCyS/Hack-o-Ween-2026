@@ -29,9 +29,27 @@ function App() {
     }, []);
     
     async function handle_login(name) {
-        var data = await login(name);
-        setUser(data)
-        cookies.set('user_cookie', name);
+        // var data = await login(name);
+
+        try 
+        {
+            const response = await fetch("http://localhost:5000/api/user", { 
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({"display_name": name})
+                })
+            
+            const result = await response.json();
+            // console.log("FETCHED USER")
+            // console.log(result)
+            
+            setUser(result)
+            cookies.set('user_cookie', name);
+        }
+        catch (err) 
+        {
+            console.error('Frontend: Error logging in:', err);
+        }
         // console.log(data)
     }
 
@@ -41,32 +59,38 @@ function App() {
         // window.location.reload();
     }
 
-
     return (
         <BrowserRouter>
             { cookies.get('user_cookie')!=undefined && user &&
                 <Header logout={handle_logout} />
             }
 
-            <Routes>
-                { (cookies.get('user_cookie')===undefined) &&
-                <Route path="/" element={<Login callback={handle_login} />} />
-                }
-                { cookies.get('user_cookie')!=undefined && user && 
-                <Route path="/" element={<ChallengesOverview session={user} />} />
-                }
-                { user && 
-                <Route path="/about" element={<About />} />
-                }
-                { user && 
-                <Route path="/scoreboard" element={<Scoreboard />} />
-                }
+            <section className='mt-24'>
+                <Routes>
+                    { (cookies.get('user_cookie')===undefined) &&
+                        <Route path="/" element={<Login callback={handle_login} />} />
+                    }
+                    { cookies.get('user_cookie')!=undefined && user && 
+                        <Route path="/" element={<ChallengesOverview session={user} />} />
+                    }
+                    { user && 
+                        <Route path="/about" element={<About />} />
+                    }
+                    { user && 
+                        <Route path="/scoreboard" element={<Scoreboard />} />
+                    }
 
-                {/* 404 */}
-                {   (cookies.get('user_cookie')===undefined) &&
-                    <Route path="*" element={<NotFound />} />
-                }
-            </Routes>
+                    {/* 404 */}
+                    {   (cookies.get('user_cookie')===undefined) &&
+                        <Route path="*" element={<NotFound />} />
+                    }
+
+                    {/* default */}
+                    <Route path="/" element={<Login callback={handle_login} />} />
+                    <Route path="/about" element={<Login callback={handle_login} />} />
+                    <Route path="/scoreboard" element={<Login callback={handle_login} />} />
+                </Routes>
+            </section>
         </BrowserRouter>
     )
 }
