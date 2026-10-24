@@ -1,3 +1,4 @@
+import json
 import threading
 import time
 
@@ -14,7 +15,7 @@ CORS(app)
 
 load_dotenv()
 
-cred = credentials.Certificate(jsonify(os.getenv('ADMIN_SDK')))
+cred = credentials.Certificate(json.loads(os.getenv('ADMIN_SDK')))
 default_app = firebase_admin.initialize_app(cred)
 db = firestore.client()
 
