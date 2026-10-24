@@ -42,7 +42,7 @@ def main():
 
     # Watch the collection query
     # query_watch = col_query.on_snapshot(snapshot)
-    return render_template("index.html", items=fetch_scoreboard().json)
+    return render_template("index.html", items=fetch_scoreboard())
 
 
 # Function to login with a display name
