@@ -14,7 +14,7 @@ CORS(app)
 
 load_dotenv()
 
-cred = credentials.Certificate(os.getenv('ADMIN_SDK'))
+cred = (os.getenv('ADMIN_SDK'))
 default_app = firebase_admin.initialize_app(cred)
 db = firestore.client()
 
