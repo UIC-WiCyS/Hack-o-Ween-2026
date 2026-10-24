@@ -1,5 +1,0 @@
-[tool.vercel]
-entrypoint = "backend.server:backend"
-
-[tool.vercel.scripts]
-build = "flask --app main run"

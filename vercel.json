@@ -2,12 +2,16 @@
   "$schema": "https://openapi.vercel.sh/vercel.json",
   "services": {
     "backend": {
-      "root": "backend",
-      "framework": "flask"
+      "root": "backend/",
+      "framework": "flask",
+      "installCommand": "pip install -r requirements.txt",
+      "buildCommand": "flask --app main run"
     },
     "frontend": {
-      "root": "frontend",
-      "framework": "vite"
+      "root": "frontend/",
+      "framework": "vite",
+      "installCommand": "npm install",
+      "buildCommand": "npm run build"
     }
   },
   "rewrites": [
