@@ -38,7 +38,7 @@ export default function ChallengeModal({session, challenge, callback}) {
         try
         {
             // react and flask use different ports so we need to specify the port for the backend
-            const response = await fetch("http://localhost:5000/api/answer", { 
+            const response = await fetch(`${window.location.origin}api/answer`, { 
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({"uuid": session.id, "challenge_id": challenge.id, "user_answer": userInput})
