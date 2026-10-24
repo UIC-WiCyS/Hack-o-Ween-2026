@@ -5,7 +5,7 @@
       "root": "backend/",
       "framework": "flask",
       "installCommand": "pip install -r requirements.txt",
-      "buildCommand": "flask --app main run"
+      "buildCommand": "python main.py"
     },
     "frontend": {
       "root": "frontend/",

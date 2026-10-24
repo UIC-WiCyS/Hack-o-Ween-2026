@@ -151,3 +151,7 @@ def check_answer():
         return jsonify({"correct":"fail"})
     except Exception as e:
         return f"An error occured with submitting your answer!: {e}"
+
+
+if __name__ == "__main__":
+    main()
