@@ -8,10 +8,16 @@
       "buildCommand": "python main.py"
     },
     "frontend": {
-      "root": "frontend/",
-      "framework": "vite",
-      "installCommand": "npm install",
-      "buildCommand": "npm run build"
+        "root": "frontend/",
+        "framework": "vite",
+        "installCommand": "npm install",
+        "buildCommand": "npm run build",
+        "rewrites":[ 
+            { 
+                "source": "/(.*)", 
+                "destination": "/index.html" 
+            } 
+        ]
     }
   },
   "rewrites": [
