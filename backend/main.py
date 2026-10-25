@@ -1,3 +1,4 @@
+import json
 import threading
 import time
 
@@ -14,13 +15,13 @@ CORS(app)
 
 load_dotenv()
 
-cred = credentials.Certificate(os.getenv('ADMIN_SDK'))
+cred = credentials.Certificate(json.loads(os.getenv('ADMIN_SDK')))
 default_app = firebase_admin.initialize_app(cred)
 db = firestore.client()
 
 # Main Flask App
 @app.route("/", methods=['GET', 'POST'])
-def main():
+# def main():
     # check_answer("hi", "chal_1", "test")
     # Create an Event for notifying main thread.
     # callback_done = threading.Event()
@@ -41,7 +42,7 @@ def main():
 
     # Watch the collection query
     # query_watch = col_query.on_snapshot(snapshot)
-    return render_template("index.html", items=fetch_scoreboard().json)
+    # return render_template("index.html", items=fetch_scoreboard().json)
 
 
 # Function to login with a display name
@@ -150,3 +151,7 @@ def check_answer():
         return jsonify({"correct":"fail"})
     except Exception as e:
         return f"An error occured with submitting your answer!: {e}"
+
+
+# if __name__ == "__main__":
+#     main()

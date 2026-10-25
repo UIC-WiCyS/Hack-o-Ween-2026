@@ -33,7 +33,9 @@ function App() {
 
         try 
         {
-            const response = await fetch("http://localhost:5000/api/user", { 
+            // use this one for deployment
+            const response = await fetch(`${window.location.origin}/api/user`, { 
+            // const response = await fetch(`http://localhost:5000/api/user`, { 
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({"display_name": name})

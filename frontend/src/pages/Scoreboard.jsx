@@ -25,7 +25,9 @@ export default function Scoreboard({}) {
         // e.preventDefault()
         // localhost:5000 is where backend is running concurrently
         try {
-            const response = await fetch(`http://localhost:5000/api/scoreboard`, {
+            // use this one for deployment
+            const response = await fetch(`${window.location.origin}/api/scoreboard`, {
+            // const response = await fetch(`http://localhost:5000/api/scoreboard`, {
                 method : 'GET'
             })
             if (!response.ok) {
