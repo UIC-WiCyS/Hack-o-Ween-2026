@@ -28,9 +28,9 @@
   width: 850px;
   max-width: 90%;
   height: 500px;
-  border: 9px solid #812990;
-  box-shadow: rgba(35, 35, 195, 0.2) 0px 7px 29px 0px;
-  background: #EAD3FF;
+  border: none;
+  box-shadow: none;
+  background: transparent;
   margin: 0 auto;
   margin-top: 2rem;
   /* margin-bottom: 5%; */

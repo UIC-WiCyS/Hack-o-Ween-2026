@@ -1,7 +1,5 @@
 import styles from "./About.module.css";
-import heart from "../assets/heart.png";
-import wicysLogo from "../assets/wicys_logo.webp";
-import wicsLogo from "../assets/wics_logo.png";
+import aboutCard from "../assets/about_card.png";
 
 export default function About() {
 
@@ -10,30 +8,9 @@ export default function About() {
             <h1 className={styles.title}>About</h1>    
             <section className={styles.aboutBody}>
 
-
-
-                <div className={styles.wicysHeart}>
-                    <img src={wicysLogo} className={styles.wicys}/>
-                    <img src={heart} className={styles.heart}/>
-                </div>
-
-                <div className={styles.wicsHeart}>
-                    <img src={wicsLogo} className={styles.wics}/>
-                    <img src={heart} className={styles.heart}/>
-                </div>
-
-
+                <img src={aboutCard} className={styles.aboutCard} alt="About card" />
                 
-
-                <h1 className={styles.question}>About</h1>
-                <p className={styles.answer}>
-                  Hello world!
-                </p> 
-                <br />
-                <a className={styles.cyberpackLink} href="" target="_blank">💜Cyberpack🩶</a>
-            </section>
-        
-            
+            </section>   
 
         </div>
         
