@@ -15,13 +15,51 @@ CORS(app)
 
 load_dotenv()
 
-cred = credentials.Certificate(json.loads(os.getenv('ADMIN_SDK')))
+# use this one for deployment
+# cred = credentials.Certificate(json.loads(os.getenv('ADMIN_SDK')))
+cred = credentials.Certificate((os.getenv('ADMIN_SDK')))
 default_app = firebase_admin.initialize_app(cred)
 db = firestore.client()
 
+
+# def live_up():
+# all_users = []
+# # Create an Event for notifying main thread.
+# callback_done = threading.Event()
+
+# Create a callback on_snapshot function to capture changes
+# def snapshot(doc_snapshot, changes, read_time):
+#     print("Callback received query snapshot, fetching live scoreboard.")
+#     # all_users = []
+#     for doc in doc_snapshot:
+#         # print("SNAPSHOT")
+#         # print(f"{doc.to_dict()}")
+#         # is in dict, so update
+#         # for i, user in enumerate(all_users):
+#         #     if user.get("id") == doc.id:
+
+#         # if (i.get("id") == doc.id for i in all_users):
+#         #     all_users({"id": doc.id} | doc.to_dict())
+#         # # is not in dict so append
+#         # else:
+#         #     all_users.append({"id": doc.id} | doc.to_dict())
+
+#         pass
+            
+#     callback_done.set()
+#     print(all_users)
+
+# col_query = db.collection("users")
+
+# Watch the collection query
+# query_watch = col_query.on_snapshot(snapshot)
+# while True:
+#     print('', end='', flush=True)
+#     time.sleep(1)
+
 # Main Flask App
 @app.route("/", methods=['GET', 'POST'])
-# def main():
+def main():
     # check_answer("hi", "chal_1", "test")
     # Create an Event for notifying main thread.
     # callback_done = threading.Event()
@@ -42,7 +80,7 @@ db = firestore.client()
 
     # Watch the collection query
     # query_watch = col_query.on_snapshot(snapshot)
-    # return render_template("index.html", items=fetch_scoreboard().json)
+    return render_template("index.html", items=fetch_scoreboard().json)
 
 
 # Function to login with a display name
@@ -51,7 +89,7 @@ db = firestore.client()
 # just makes more sense if we can have one 'user' that submits for the entire team
 # (and also makes it easier to test without having to log in)
 # could be something we integrate to allow for multiple google accs to be added to a 'team' but that feels unnecessary for minis
-@app.route("/api/user", methods=['GET', 'POST'])
+@app.route("/api/user", methods=['PUT'])
 def login():
     data = request.get_json()
     # print("RECEIVED DATA FROM FRONTEND")
@@ -110,9 +148,11 @@ def fetch_scoreboard():
         all_users = []
         for doc in docs:
             all_users.append({"id": doc.id} | doc.to_dict())
+        # print( all_users)
         return jsonify(all_users)
     except Exception as e:
         return f"An error occured with fetching scoreboard: {e}"
+
 
 # Function to check if the user passed the correct answer
 @app.route('/api/answer', methods=['POST'])

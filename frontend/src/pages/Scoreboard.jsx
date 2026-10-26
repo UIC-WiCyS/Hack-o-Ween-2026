@@ -5,6 +5,7 @@ import { fetch_scoreboard } from '../api/firebase_manager';
 
 export default function Scoreboard({}) {
     const [scores, setScore] = useState([])
+    const [name, setName] = useState("")
 
     // fetch data
     useEffect(() => {
@@ -20,14 +21,33 @@ export default function Scoreboard({}) {
 
         fetch_scores();
     }, []);
+
+    // useEffect(() => {
+    //     var source = new EventSource(`http://localhost:5000/api/scoreboard`);
+    //     source.addEventListener(
+    //     "customer",
+    //     function(event) {
+    //         var data = JSON.parse(event.data);
+    //         setName(data[0].name);
+    //     },
+    //     false
+    //     );
+    //     source.addEventListener(
+    //     "error",
+    //     function(event) {
+    //         console.log(event);
+    //     },
+    //     false
+    //     );
+    // }, []);
     
     const fetch_scores = async (e) => {
         // e.preventDefault()
         // localhost:5000 is where backend is running concurrently
         try {
             // use this one for deployment
-            const response = await fetch(`${window.location.origin}/api/scoreboard`, {
-            // const response = await fetch(`http://localhost:5000/api/scoreboard`, {
+            // const response = await fetch(`${window.location.origin}/api/scoreboard`, {
+            const response = await fetch(`http://localhost:5000/api/scoreboard`, {
                 method : 'GET'
             })
             if (!response.ok) {
@@ -44,6 +64,8 @@ export default function Scoreboard({}) {
     return (
         <section style={{height: "75vh"}}>
             <h1 className={styles.title}>Scoreboard</h1>
+
+            <p> {name} </p>
 
             <div className={styles.leaderboard}>
                 {scores && scores.map((entry, index) => (

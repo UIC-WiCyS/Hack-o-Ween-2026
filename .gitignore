@@ -28,3 +28,4 @@ env
 __pycache__
 **/*.env
 # **/*.json
+**/hackoween-2026*.json

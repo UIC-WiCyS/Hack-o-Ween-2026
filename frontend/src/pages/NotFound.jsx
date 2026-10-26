@@ -3,7 +3,7 @@ import heart from "../assets/heart.png";
 
 export default function NotFound() {
     return (
-        <section className="flex flex-col items-center justify-center h-[100vh] font-eater gap-3 text-white">
+        <section className="flex flex-col items-center justify-center h-screen font-eater gap-3 text-white">
             <h1 className="text-8xl font-eater">404</h1>
             <h1 className="text-8xl font-eater">Not Found.</h1>
             <h3>You found a secret! Here, have a cookie 🍪</h3>

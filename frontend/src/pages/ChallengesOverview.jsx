@@ -32,8 +32,8 @@ export default function ChallengesOverview({session}) {
         // localhost:5000 is where I am running the backend concurrently
         try {
             // use this one for deployment
-            const response = await fetch(`${window.location.origin}/api/challenges`, {
-            // const response = await fetch(`http://localhost:5000/api/challenges`, {
+            // const response = await fetch(`${window.location.origin}/api/challenges`, {
+            const response = await fetch(`http://localhost:5000/api/challenges`, {
                 method : 'GET'
             })
             if (!response.ok) {
