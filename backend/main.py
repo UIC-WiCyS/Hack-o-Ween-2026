@@ -111,7 +111,8 @@ def login():
         else:
             doc_ref.set({
                 "completed": [],
-                "score": 0
+                "score": 0,
+                "last_updated": firestore.SERVER_TIMESTAMP,
             })
             print("New User Created:", data['display_name'])
             # login + return data
@@ -144,7 +145,7 @@ def get_all_challenges():
 def fetch_scoreboard():
     try:
         print("Fetching scoreboard")
-        docs = db.collection("users").order_by("score", direction=firestore.Query.DESCENDING).stream()
+        docs = db.collection("users").order_by("score", direction=firestore.Query.DESCENDING).order_by("last_updated", direction=firestore.Query.ASCENDING).stream()
         all_users = []
         for doc in docs:
             all_users.append({"id": doc.id} | doc.to_dict())
@@ -185,6 +186,7 @@ def check_answer():
             if data['challenge_id'] not in user_data["completed"]:
                 user_ref.update({"score": user_data["score"] + chal[0]["points"]})
                 user_ref.update({"completed": firestore.ArrayUnion([data['challenge_id']])})
+                user_ref.update({"last_updated": firestore.SERVER_TIMESTAMP})
             return jsonify({"correct":"success"})
 
         # any other number
