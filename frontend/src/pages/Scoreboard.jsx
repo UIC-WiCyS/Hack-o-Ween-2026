@@ -1,10 +1,14 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import styles from "./Scoreboard.module.css";
 import { fetch_scoreboard } from '../api/firebase_manager';
+import corpseBrideJumpscare from '../assets/corpse_bride_jumpscare.gif';
+import corpseBrideWind from '../assets/corpse_bride_wind.wav';
 
 export default function Scoreboard({}) {
     const [scores, setScore] = useState([])
+    const [showJumpscare, setShowJumpscare] = useState(false);
+    const audioRef = useRef(null);
     const [name, setName] = useState("")
 
     // fetch data
@@ -22,6 +26,18 @@ export default function Scoreboard({}) {
         fetch_scores();
     }, []);
 
+    // jumpscare on page load
+    useEffect(() => {
+        setShowJumpscare(true);
+        if (audioRef.current) {
+            audioRef.current.currentTime = 0;
+            audioRef.current.play().catch(() => {});
+        }
+        const timer = setTimeout(() => setShowJumpscare(false), 700);
+        return () => clearTimeout(timer);
+    }, []);
+
+    // attempting live scoreboard TODO later
     // useEffect(() => {
     //     var source = new EventSource(`http://localhost:5000/api/scoreboard`);
     //     source.addEventListener(
@@ -63,9 +79,13 @@ export default function Scoreboard({}) {
 
     return (
         <section style={{height: "75vh"}}>
-            <h1 className={styles.title}>Scoreboard</h1>
+            <audio ref={audioRef} src={corpseBrideWind} />
 
-            <p> {name} </p>
+            {showJumpscare && (
+                <img src={corpseBrideJumpscare} className={styles.jumpscare} alt="" />
+            )}
+
+            <h1 className={styles.title}>Scoreboard</h1>
 
             <div className={styles.leaderboard}>
                 {scores && scores.map((entry, index) => (

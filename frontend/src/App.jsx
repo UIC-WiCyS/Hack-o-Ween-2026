@@ -28,7 +28,7 @@ function App() {
         // console.log(user);
     }, []);
     
-    async function handle_login(name) {
+    async function handle_login(name, jumpscares) {
         // var data = await login(name);
 
         try 
@@ -47,6 +47,8 @@ function App() {
             
             setUser(result)
             cookies.set('user_cookie', name);
+        if (jumpscares !== undefined)
+            cookies.set('jumpscares_cookie', jumpscares);
         }
         catch (err) 
         {
@@ -58,6 +60,7 @@ function App() {
     async function handle_logout() {
         setUser(null);
         cookies.remove('user_cookie');
+        cookies.remove('jumpscares_cookie');
         // window.location.reload();
     }
 
