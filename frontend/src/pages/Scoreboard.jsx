@@ -2,9 +2,11 @@ import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import styles from "./Scoreboard.module.css";
 import { fetch_scoreboard } from '../api/firebase_manager';
+import corpseBrideJumpscare from '../assets/corpse_bride_jumpscare.gif';
 
 export default function Scoreboard({}) {
     const [scores, setScore] = useState([])
+    const [showJumpscare, setShowJumpscare] = useState(false);
 
     // fetch data
     useEffect(() => {
@@ -21,8 +23,19 @@ export default function Scoreboard({}) {
         fetch_scores();
     }, []);
 
+    // jumpscare on page load
+    useEffect(() => {
+        setShowJumpscare(true);
+        const timer = setTimeout(() => setShowJumpscare(false), 700);
+        return () => clearTimeout(timer);
+    }, []);
+
     return (
         <section style={{height: "75vh"}}>
+            {showJumpscare && (
+                <img src={corpseBrideJumpscare} className={styles.jumpscare} alt="" />
+            )}
+
             <h1 className={styles.title}>Scoreboard</h1>
 
             <div className={styles.leaderboard}>

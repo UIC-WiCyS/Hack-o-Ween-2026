@@ -69,3 +69,28 @@
   font-size: 18px;
   margin-top: 2rem;
 }
+
+.jumpscare {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  object-fit: cover;
+  z-index: 9999;
+  animation: jumpscareGlitch 0.7s steps(2, end);
+}
+
+@keyframes jumpscareGlitch {
+  0%   { opacity: 1; transform: translate(0, 0); }
+  10%  { opacity: 0; }
+  20%  { opacity: 1; transform: translate(-8px, 4px); }
+  30%  { opacity: 0; }
+  40%  { opacity: 1; transform: translate(8px, -4px); }
+  50%  { opacity: 0; }
+  60%  { opacity: 1; transform: translate(-5px, -3px); }
+  70%  { opacity: 0; }
+  80%  { opacity: 1; transform: translate(5px, 3px); }
+  90%  { opacity: 1; transform: translate(0, 0); }
+  100% { opacity: 1; transform: translate(0, 0); }
+}
