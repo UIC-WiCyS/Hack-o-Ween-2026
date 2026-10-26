@@ -6,8 +6,8 @@ import { login, get_all_challenges } from "../api/firebase_manager";
 
 export default function ChallengesOverview({session}) {
     const [challenges, setChallenges] = useState([]);
-    
     const [completed, setCompleted] = useState([]);
+    const [jumpscares, setJumpscares] = useState(false)
     const [openModal, setModal] = useState(false); 
     const [selectedChallenge, setSelectedChallenge] = useState(null);
 
@@ -37,10 +37,21 @@ export default function ChallengesOverview({session}) {
 
     return (
         <section className='font-eater text-white' style={{height: "75vh"}}>
+            {/*<h1 className={styles.title}>Challenges Overview</h1>*/}
             <div className={styles.header}> 
-                <p className='text-left font-eater text-base'>Welcome, {session.id.toUpperCase()}</p>
-                <h1 className={styles.title}>Challenges Overview</h1>
-                <p className='text-right font-eater text-base'>Score: {session.score}</p>
+                <div className='text-left font-eater text-base'>
+                    <p>Player: {session.id.toUpperCase()}</p>
+                    <p>Sanity: {session.score}</p>
+                </div>
+                <div className='text-right font-eater text-base'>
+                    {/*to be implemented :D*/}
+                    <p>Status: {null}</p>
+                    <button className={`${styles.toggle} ${jumpscares ? styles.toggleON:""}`} 
+                    
+                    onClick={()=> setJumpscares(!jumpscares)} >
+                    
+                    Jump Scares: {jumpscares ? "ON" : "OFF"}</button>
+                </div>
             </div>
             
             <div className={styles.challengeMap}> 
@@ -60,7 +71,7 @@ export default function ChallengesOverview({session}) {
             
             {/*check the boolean state && check there is a selected challenge && get the challenge*/}
             {openModal && selectedChallenge && (
-                <ChallengeModal session={session} challenge={selectedChallenge} callback={handle_solved} />
+                <ChallengeModal session={session} challenge={selectedChallenge} callback={handle_solved} jumpscaresEnabled={jumpscares} />
             )}
         </section>
     );

@@ -3,11 +3,12 @@ import styles from "./ChallengeModal.module.css";
 import { check_answer } from '../api/firebase_manager';
 import { Download } from 'lucide-react';
 import Hint from "./Hint"
+import dancingSkeleton from "../assets/dancingSkeleton.gif";
 
-export default function ChallengeModal({session, challenge, callback}) {
+export default function ChallengeModal({session, challenge, callback, jumpscaresEnabled}) {
     const [userInput, setInput] = useState("");
     const [isCorrect, setModal] = useState("default");
-
+    const [onJumpscare, setJumpscare] = useState(false);
     useEffect(() => {
         // handling esc key press
         const handleEsc = (event) => {
@@ -32,6 +33,12 @@ export default function ChallengeModal({session, challenge, callback}) {
         }
 
         var success = await check_answer(session.id, challenge.id, userInput);
+        if (jumpscaresEnabled && Math.floor(Math.random() * 5) == 1){
+            setJumpscare(true);
+            setTimeout(()=>{
+                setJumpscare (false);
+            }, 2000);
+        }
         if (success)
         {
             setModal("success")
@@ -124,6 +131,14 @@ export default function ChallengeModal({session, challenge, callback}) {
                     <p className='text-red-600'>Incorrect!</p>
                 }
             </form>
+
+            {onJumpscare && (
+                <div className={styles.jumpscare}>
+                    <img src={dancingSkeleton}></img>
+
+                </div>
+            )
+            }
         </div>
     );
 }

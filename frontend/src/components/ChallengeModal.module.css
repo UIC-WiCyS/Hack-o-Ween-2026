@@ -38,3 +38,17 @@
 .shakey {
   animation: shake 3s ease-in-out;
 }
+
+.jumpscare {
+    position: fixed;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: rgba(0, 0, 0, 0.414);
+}
+
+.jumpscare img {
+    width: 100%;
+    height: 100%;
+    border: none;
+}
