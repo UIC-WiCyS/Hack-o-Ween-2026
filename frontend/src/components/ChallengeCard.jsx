@@ -1,16 +1,18 @@
 import styles from "./ChallengeCard.module.css";
+import X from "../assets/solved.png"
 
 export default function ChallengeCard({ onClick, name, points, category, solved, solvedImg }) {
     return (
-        <div onClick={onClick} className={styles.singleChallenge}>
+        <div onClick={() => {if (!solved) {onClick();}}} className={styles.singleChallenge}>
+
             {solved ? ( 
                 <div>
-                    <img 
-                        src={import.meta.env.BASE_URL + "animalsChallenges/" + solvedImg + ".png"} 
-                        className={styles.img} 
+                    <img
+                        src={X}
+                        className={styles.img}
                     />
-                    <p className="text-[#1B529B]">✔️COMPLETED</p>
                 </div>
+
             ) : (
                 <>
                     <h1 className={styles.name}>{name}</h1>

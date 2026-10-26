@@ -3,6 +3,8 @@ import styles from "./ChallengeModal.module.css";
 import { check_answer } from '../api/firebase_manager';
 import { Download } from 'lucide-react';
 import Hint from "./Hint"
+import stickyNote from "../assets/sticky_note.png";
+
 import dancingSkeleton from "../assets/dancingSkeleton.gif";
 
 export default function ChallengeModal({session, challenge, callback, jumpscaresEnabled}) {
@@ -60,8 +62,8 @@ export default function ChallengeModal({session, challenge, callback, jumpscares
     }
 
     return (
-        <div id="challenge-modal" className={`absolute w-3/4 z-1000 top-1/8 left-1/8 h-3/4 overflow-y-scroll text-center bg-[#EAD3FF] border-[#812990] border-4 text-[#812990] font-eater p-6 px-10 flex flex-col gap-4'`} 
-            style={{scrollbarColor: "#1B529B #ffffff00", }}>
+        <div id="challenge-modal" className={`absolute w-3/4 z-1000 top-1/8 left-1/8 h-3/4 overflow-y-scroll text-center bg-[#EAD3FF] border-[#812990] border-4 text-[#812990] font-eater p-6 px-10 flex flex-col gap-4'`} >
+           
             <div className='flex justify-between flex-wrap-reverse text-wrap'>
                 <div className='font-eater text-left text-2xl'>
                     <p className='font-bold'>{challenge.name.toUpperCase()}</p>

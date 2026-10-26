@@ -3,7 +3,6 @@ import styles from "./ChallengesOverview.module.css";
 import ChallengeCard from "../components/ChallengeCard";
 import ChallengeModal from "../components/ChallengeModal";
 import { login, get_all_challenges } from "../api/firebase_manager";
-
 export default function ChallengesOverview({session}) {
     const [challenges, setChallenges] = useState([]);
     const [completed, setCompleted] = useState([]);

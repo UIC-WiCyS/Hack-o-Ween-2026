@@ -103,9 +103,9 @@
 @keyframes pulse {
   0% {
     text-shadow: 
-      0 0 4px #830505,
-      0 0 10px #830505,
-      0 0 20px #830505;
+      0 0 4px #830505b3,
+      0 0 10px #830505b3,
+      0 0 20px #830505b3;
   }
   100% {
     text-shadow: 

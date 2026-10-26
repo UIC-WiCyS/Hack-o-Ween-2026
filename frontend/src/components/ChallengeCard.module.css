@@ -8,39 +8,47 @@
     padding: 20px;
     box-sizing: border-box;
     overflow-wrap: break-word;
-    border: 7px solid #852d95;
-    background: #EAD3FF;
-    box-shadow: 0 4px 6px #44134d;
+    background-image: url('../assets/sticky_note.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    filter: drop-shadow(5px 5px 10px rgba(0, 0, 0, 0.811));
     transition: transform 0.2s ease;
 }
 
 .singleChallenge:hover {
     transform: translateY(-5px);
-    box-shadow: 0 4px 6px  rgba(0, 0, 0, 0.25);
+    filter: drop-shadow(5px 5px 10px rgba(52, 0, 0, 0.811));
     cursor: pointer;
+}
+
+.singleChallenge:hover .name{
+    color: #3d0a0a;
+    animation: pulse 2s 6 alternate; 
+    text-shadow: #661818;
 }
 
 .name, .category, .points {
     display: flex;
     flex-wrap: wrap;
     overflow-wrap: break-word; 
-    color: var(--WiCyS-Purple, #812990);
+    padding: 15px;
+    margin-left: 15px;
+    margin-right: 15px;
+
+    color: #000;
     text-align: center;
-    -webkit-text-stroke-width: 1px;
-    -webkit-text-stroke-color: #812990;
-    font-family: "Eater";
-    font-size: 25px;
-    padding: 10px;
-    margin-left: 10px;
-    margin-right: 10px;
+    font-family: Eater;
+    font-size: 24px;
     font-style: normal;
     font-weight: 400;
-    line-height: normal;
+    line-height: 30px; /* 125% */
+    
+    transition: text-shadow 0.5s ease-in-out;
 }
 
 .points {
-    color: #1B529B;
-    -webkit-text-stroke-color: #1B529B;
+    color: #3d0a0a;
 }
 
 .category{
@@ -48,8 +56,25 @@
 }
 
 .img {
-    width: 150px;
+    width: 250px;
     height: 150px;
+    align-items: center;
     object-fit: contain;
-    padding:1rem;
+    padding-top:2rem;
+}
+
+@keyframes pulse {
+  0% {
+    text-shadow: 
+      0 0 4px #830505,
+      0 0 10px #830505,
+      0 0 20px #830505;
+  }
+  100% {
+    text-shadow: 
+      0 0 8px #830505,
+      0 0 25px #830505,
+      0 0 50px #830505,
+      0 0 80px #830505;
+  }
 }
