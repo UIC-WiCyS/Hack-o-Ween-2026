@@ -28,16 +28,19 @@ function App() {
         // console.log(user);
     }, []);
     
-    async function handle_login(name) {
+    async function handle_login(name, jumpscares) {
         var data = await login(name);
         setUser(data)
         cookies.set('user_cookie', name);
+        if (jumpscares !== undefined)
+            cookies.set('jumpscares_cookie', jumpscares);
         // console.log(data)
     }
 
     async function handle_logout() {
         setUser(null);
         cookies.remove('user_cookie');
+        cookies.remove('jumpscares_cookie');
         // window.location.reload();
     }
 
