@@ -4,14 +4,18 @@ import { check_answer } from '../api/firebase_manager';
 import { Download } from 'lucide-react';
 import Hint from "./Hint"
 import StickyNote from "../assets/sticky_note.png";
+import Ghost from "../assets/ghost.png";
+import Cookies from 'universal-cookie';
 
 import meltyGIF from "../assets/melty.gif";
+import jumpGIF from "../assets/jump.gif";
 
 
 export default function ChallengeModal({session, challenge, callback}) {
     const [userInput, setInput] = useState("");
     const [isCorrect, setModal] = useState("default");
-
+    const cookies = new Cookies(null, { path: '/' });
+    
     useEffect(() => {
         // handling esc key press
         const handleEsc = (event) => {
@@ -83,16 +87,20 @@ export default function ChallengeModal({session, challenge, callback}) {
     }
 
     return (
+        <div className='w-screen left-0'>
         <div id="challenge-modal" className={`absolute w-2/3 z-1000 top-0 left-1/6 h-full text-center text-black font-eater'`} >
             {/* sticky note background */}
             <img src={StickyNote} className='absolute z-998' style={{width: "100%", height:"100%", objectFit: "contain"}} />
-            
+            <img src={Ghost} className='absolute z-995 top-1/2 scale-200' />
+            <img src={Ghost} className='absolute z-995 top-1/3 right-1/8 scale-x-[-1]' />
+            <img src={Ghost} className='absolute z-995 top-3/4 right-1/32 scale-x-[-1.5] scale-150' />
+
             <div className='relative z-999 p-6 px-10 flex flex-col gap-4 w-5/8 top-1/7 mx-auto h-3/4 overflow-y-scroll'
                 style={{scrollbarColor: "#4A807B #ffffff00", }}>
                 <div className='flex justify-end flex-wrap-reverse text-wrap'>
                     <div className='font-eater text-right text-xl self-end justify-self-end'>
                         <p className='font-bold'>{challenge.name.toUpperCase()}</p>
-                        <p className='font-eater text-[#1D4440]'>{challenge.points} || {challenge.category} points</p>
+                        <p className='font-eater text-[#1D4440]'>{challenge.points} points || {challenge.category}</p>
                     </div>
                     
                     <button onClick={()=>{callback(false)}}>
@@ -158,25 +166,24 @@ export default function ChallengeModal({session, challenge, callback}) {
                         <p className='text-red-600'>Incorrect!</p>
                     }
                 </form>
+            </div>
 
-                {/* jumpscares -- 1/5 chance */} 
-                { Math.floor(Math.random() * 5) == 1 &&
-                    <div className='absolute top-1/2'>
-                    {
-                        isCorrect=="empty" &&
-                        <p className='text-red-600'>Incorrect!</p>
-                    }
-                    {
-                        isCorrect=="success" &&
-                        <img src={meltyGIF} />
-                    }
-                    {
-                        isCorrect=="fail" &&
-                        <img src={meltyGIF} />
-                    }
+        </div>
+            {/* jumpscares -- different chances */} 
+            { cookies.get("jumpscares_cookie") == true && (isCorrect=="success" || isCorrect=="fail") &&
+                <div className='absolute w-screen h-screen z-1001 top-0 left-0' style={{objectFit: "cover"}}>
+                {
+                    isCorrect=="success" && Math.floor(Math.random() * 2) == 1 && 
+                    <img src={meltyGIF} style={{objectFit: "cover", width:"100%", height:"100%"}} />
+                }
+                {
+                    isCorrect=="fail" && Math.floor(Math.random() * 3) == 1 &&
+                    <div>
+                        <img src={jumpGIF}  style={{objectFit: "cover", width:"100%", height:"100%"}} />
                     </div>
                 }
-            </div>
+                </div>
+            }
         </div>
     );
 }

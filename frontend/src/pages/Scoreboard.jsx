@@ -4,6 +4,7 @@ import styles from "./Scoreboard.module.css";
 import { fetch_scoreboard } from '../api/firebase_manager';
 import corpseBrideJumpscare from '../assets/corpse_bride_jumpscare.gif';
 import corpseBrideWind from '../assets/corpse_bride_wind.wav';
+import Cookies from 'universal-cookie';
 
 export default function Scoreboard({}) {
     const [scores, setScore] = useState([])
@@ -11,6 +12,7 @@ export default function Scoreboard({}) {
     const audioRef = useRef(null);
     const [name, setName] = useState("")
 
+    const cookies = new Cookies(null, { path: '/' });
     // fetch data
     useEffect(() => {
         // fetch scoreboard
@@ -28,13 +30,15 @@ export default function Scoreboard({}) {
 
     // jumpscare on page load
     useEffect(() => {
-        setShowJumpscare(true);
-        if (audioRef.current) {
-            audioRef.current.currentTime = 0;
-            audioRef.current.play().catch(() => {});
+        if (cookies.get("jumpscares_cookie") == true) {
+            setShowJumpscare(true);
+            if (audioRef.current) {
+                audioRef.current.currentTime = 0;
+                audioRef.current.play().catch(() => {});
+            }
+            const timer = setTimeout(() => setShowJumpscare(false), 700);
+            return () => clearTimeout(timer);
         }
-        const timer = setTimeout(() => setShowJumpscare(false), 700);
-        return () => clearTimeout(timer);
     }, []);
 
     // attempting live scoreboard TODO later
@@ -79,8 +83,9 @@ export default function Scoreboard({}) {
 
     return (
         <section style={{height: "75vh"}}>
-            <audio ref={audioRef} src={corpseBrideWind} />
-
+            { cookies.get("jumpscares_cookie") == true &&
+                <audio ref={audioRef} src={corpseBrideWind} />
+            }
             {showJumpscare && (
                 <img src={corpseBrideJumpscare} className={styles.jumpscare} alt="" />
             )}

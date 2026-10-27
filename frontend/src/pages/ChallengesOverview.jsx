@@ -3,6 +3,7 @@ import styles from "./ChallengesOverview.module.css";
 import ChallengeCard from "../components/ChallengeCard";
 import ChallengeModal from "../components/ChallengeModal";
 import { login, get_all_challenges } from "../api/firebase_manager";
+import Cookies from 'universal-cookie';
 
 export default function ChallengesOverview({session}) {
     const [challenges, setChallenges] = useState([]);

@@ -1,9 +1,8 @@
 import { Link } from 'react-router-dom';
-import heart from "../assets/heart.png";
 
 export default function NotFound() {
     return (
-        <section className="flex flex-col items-center justify-center h-screen font-eater gap-3 text-white">
+        <section className="flex flex-col items-center h-screen font-eater gap-3 text-white">
             <h1 className="text-8xl font-eater">404</h1>
             <h1 className="text-8xl font-eater">Not Found.</h1>
             <h3>You found a secret! Here, have a cookie 🍪</h3>
@@ -12,7 +11,6 @@ export default function NotFound() {
             <div style={{height:'2rem'}}/>
             <Link to="/" className="relative w-3/4">
                 <p className="z-100 underline absolute top-0 left-1/2 text-2xl" style={{transform: "translate(-50%, -50%)"}}>HOME</p>
-                <img className="absolute top-3/4 left-1/2 z-0" style={{transform: "translate(-50%, -50%)", height: '12rem', width: 'auto', objectFit: "contain"}} src={heart} />
             </Link>
 
             {/* <3 */}
