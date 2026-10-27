@@ -6,6 +6,7 @@ import StickyNote from "../assets/sticky_note.png"
 import WICYSLogo from "../assets/wicys_logo.png"
 import LUGLogo from "../assets/lug_logo.png"
 import FazzBear from "../assets/fazzbear.gif"
+import Cookies from 'universal-cookie';
 
 export default function Login({callback}) {
     const [input, setInput] = useState("");
@@ -113,7 +114,7 @@ export default function Login({callback}) {
                     required
                     placeholder=">TYPE USERNAME<"
                 />
-                <button type="submit" className={styles.play}>
+                <button type="submit" className={`hover:-rotate-5 ${styles.play}`}>
                     &gt;PLAY&lt;
                 </button>
             </form>

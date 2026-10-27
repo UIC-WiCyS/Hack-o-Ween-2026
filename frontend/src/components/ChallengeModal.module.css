@@ -3,29 +3,40 @@
     border: none;
     outline: none;
     width: 50%;
-    color: #1B529B;
-    background: #CF9BFF;
-    border: solid #812990 0.25rem;
+    color: #B9D8DE;
+    background: #4A807B;
+    padding: 0.5rem;
+    border: solid black 0.1rem;
+    border-radius: 0.25rem;
 }
 
 .files_download {
+    font-family: "Doppio One";
+    font-size: medium;
     display: flex; 
     justify-content: center;
     align-items: center;
     gap: 12px;
     text-align: center;
-    color: #1B529B;
-    background: #B9D8DE;
-    border: solid #1EA6A5 0.25rem;
+    color: black;
+    background: #968B6B;
+    border: solid black 0.1rem;
+    border-radius: 1rem;
     padding: 0.5rem 1rem;
     cursor: pointer;
     height: fit-content; 
     text-align: left;
+    margin-top: 0.25rem;
 }
 
 .files_download:hover {
-    background-color: #1B529B;
+    background-color: #1D4440;
     color: #B9D8DE;
+    text-decoration: underline;
+}
+
+a {
+    color: #4A807B;
     text-decoration: underline;
 }
 

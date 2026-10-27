@@ -3,25 +3,28 @@ import styles from "./ChallengesOverview.module.css";
 import ChallengeCard from "../components/ChallengeCard";
 import ChallengeModal from "../components/ChallengeModal";
 import { login, get_all_challenges } from "../api/firebase_manager";
+import Cookies from 'universal-cookie';
+
 export default function ChallengesOverview({session}) {
+    const cookies = new Cookies(null, { path: '/' });
     const [challenges, setChallenges] = useState([]);
     const [completed, setCompleted] = useState([]);
-    const [jumpscares, setJumpscares] = useState(false)
+    const [jumpscares, setJumpscares] = useState(cookies.get("jumpscares_cookie"))
     const [openModal, setModal] = useState(false); 
     const [selectedChallenge, setSelectedChallenge] = useState(null);
     const numChallenges = challenges.length;
 
-    const fetch_challenges = async () => {
-        var data = await get_all_challenges();
-        if (data != null)
-        {
-            // update
-            setChallenges(data);
-        }
-    };
+    // const fetch_challenges = async () => {
+    //     var data = await get_all_challenges();
+    //     if (data != null)
+    //     {
+    //         // update
+    //         setChallenges(data);
+    //     }
+    // };
 
     const totalPoints = challenges.reduce((sum, challenge) => {
-    return sum + Number(challenge.points);
+        return sum + Number(challenge.points);
     }, 0);
 
     
@@ -53,6 +56,27 @@ export default function ChallengesOverview({session}) {
         setCompleted(session.completed);
     }, [session])
 
+    const fetch_challenges = async (e) => {
+        // e.preventDefault()
+        // localhost:5000 is where I am running the backend concurrently
+        try {
+            // use this one for deployment
+            // const response = await fetch(`${window.location.origin}/api/challenges`, {
+            const response = await fetch(`http://localhost:5000/api/challenges`, {
+                method : 'GET'
+            })
+            if (!response.ok) {
+                throw new Error('Error in fetching challenges')
+            }
+            const res = await response.json()
+            setChallenges(res)
+            // console.log(res)
+        } catch (err) {
+            console.log(err)
+        }
+    }
+
+
     function handle_solved() {
         setModal(false);
         // refetch challenges
@@ -65,15 +89,15 @@ export default function ChallengesOverview({session}) {
         <section className='font-eater text-white' style={{height: "75vh"}}>
             {/*<h1 className={styles.title}>Challenges Overview</h1>*/}
             <div className={styles.header}> 
-                <div className='text-left font-eater text-base'>
+                <div className='text-left font-eater text-lg'>
                     <p>Player: {session.id.toUpperCase()}</p>
                     <p>Sanity: {session.score}</p>
                 </div>
-                <div className='text-right font-eater text-base'>
+                <div className='text-right font-eater text-lg'>
                     <p>Status: {status}</p>
                     <button className={`${styles.toggle} ${jumpscares ? styles.toggleON:""}`} 
                     
-                    onClick={()=> setJumpscares(!jumpscares)} >
+                    onClick={()=> {cookies.set('jumpscares_cookie', !jumpscares); setJumpscares(!jumpscares)}} >
                     
                     Jump Scares: {jumpscares ? "ON" : "OFF"}</button>
                 </div>
@@ -96,7 +120,7 @@ export default function ChallengesOverview({session}) {
             
             {/*check the boolean state && check there is a selected challenge && get the challenge*/}
             {openModal && selectedChallenge && (
-                <ChallengeModal session={session} challenge={selectedChallenge} callback={handle_solved} jumpscaresEnabled={jumpscares} />
+                <ChallengeModal session={session} challenge={selectedChallenge} callback={handle_solved} solved={completed.some(id => String(id) === String(selectedChallenge.id))} />
             )}
         </section>
     );
