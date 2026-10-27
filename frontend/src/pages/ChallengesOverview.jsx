@@ -9,6 +9,7 @@ export default function ChallengesOverview({session}) {
     const [jumpscares, setJumpscares] = useState(false)
     const [openModal, setModal] = useState(false); 
     const [selectedChallenge, setSelectedChallenge] = useState(null);
+    const numChallenges = challenges.length;
 
     const fetch_challenges = async () => {
         var data = await get_all_challenges();
@@ -18,6 +19,32 @@ export default function ChallengesOverview({session}) {
             setChallenges(data);
         }
     };
+
+    const totalPoints = challenges.reduce((sum, challenge) => {
+    return sum + Number(challenge.points);
+    }, 0);
+
+    
+    let status;  
+    if (session.score <= totalPoints*0.10) {
+        /* for <=10% */
+        status = "Dead 👻";
+    } else if (session.score <= totalPoints*0.30) {
+         /* for  > 10% <=30% */
+        status = "Fatal";
+    } else if (session.score <= totalPoints*0.50) {
+        /* for  > 30% <=50% */
+        status = "Critical";
+    } else if (session.score <= totalPoints*0.65) {
+        /* for  > 50% <=65% */
+        status = "Hurt";
+    }else if (session.score <= totalPoints *.80) {
+        /* for  > 65% <=80% */
+        status = "Ouchie";
+    }else { 
+        /* for > 80% <=90%+ */
+        status = "Alive";
+    }
 
     useEffect(() => {    
         // check if session exists
@@ -43,8 +70,7 @@ export default function ChallengesOverview({session}) {
                     <p>Sanity: {session.score}</p>
                 </div>
                 <div className='text-right font-eater text-base'>
-                    {/*to be implemented :D*/}
-                    <p>Status: {null}</p>
+                    <p>Status: {status}</p>
                     <button className={`${styles.toggle} ${jumpscares ? styles.toggleON:""}`} 
                     
                     onClick={()=> setJumpscares(!jumpscares)} >
