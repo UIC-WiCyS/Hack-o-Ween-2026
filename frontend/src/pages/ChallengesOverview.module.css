@@ -6,9 +6,9 @@
 
     /* width: 967px;
     height: 567px; */
-    border: 7px solid #812990;
+    border: 7px solid #4A807B;
     background: #EAD3FF;
-    box-shadow: 4px 4px 0 0 #CF9BFF;
+    box-shadow: 4px 4px 0 0 #91d4cd;
 }
 
 .title {
@@ -28,7 +28,6 @@
     padding: 15px;
     max-width: 500px;
     width: 90%;
-    color: var(--WiCyS-Purple, #812990);
     font-family: "Eater";
     font-size: 24px;
     font-style: normal;
@@ -47,7 +46,7 @@
   position: relative;
   overflow-y: scroll;
   height: 75vh;
-  scrollbar-color: #1B529B #ffffff00;
+  scrollbar-color: #4a807b7a #ffffff00;
   height: 95%;
 }
 
@@ -62,7 +61,7 @@
     font-family: "Eater";
     font-size: 100px;
     font-style: normal;
-    font-weight: 500;
+    font-weight: 800;
 }
 
 .text-left
@@ -86,8 +85,13 @@
 
 }
 .toggleON{
-    -webkit-text-stroke: .8px #014821;
+    -webkit-text-stroke: .8px #4A807B;
     color: #ffffffc7;
+    text-shadow: 
+      0 0 8px #4A807B,
+      0 0 25px #4A807B,
+      0 0 50px #4A807B,
+      0 0 80px #4A807B;
 }
 
 

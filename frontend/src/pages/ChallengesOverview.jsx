@@ -30,19 +30,19 @@ export default function ChallengesOverview({session}) {
         /* for <=10% */
         status = "Dead 👻";
     } else if (session.score <= totalPoints*0.30) {
-         /* for  > 10% <=30% */
+         /* for  >10% to <=30% */
         status = "Fatal";
     } else if (session.score <= totalPoints*0.50) {
-        /* for  > 30% <=50% */
+        /* for  >30% to <=50% */
         status = "Critical";
     } else if (session.score <= totalPoints*0.65) {
-        /* for  > 50% <=65% */
+        /* for  >50% to <=65% */
         status = "Hurt";
     }else if (session.score <= totalPoints *.80) {
-        /* for  > 65% <=80% */
+        /* for  >65% to <=80% */
         status = "Ouchie";
     }else { 
-        /* for > 80% <=90%+ */
+        /* for >80% to <=90%+ */
         status = "Alive";
     }
 
