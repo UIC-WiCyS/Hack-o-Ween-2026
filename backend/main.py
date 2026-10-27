@@ -16,8 +16,8 @@ CORS(app)
 load_dotenv()
 
 # use this one for deployment
-# cred = credentials.Certificate(json.loads(os.getenv('ADMIN_SDK')))
-cred = credentials.Certificate((os.getenv('ADMIN_SDK')))
+cred = credentials.Certificate(json.loads(os.getenv('ADMIN_SDK')))
+# cred = credentials.Certificate((os.getenv('ADMIN_SDK')))
 default_app = firebase_admin.initialize_app(cred)
 db = firestore.client()
 
