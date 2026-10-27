@@ -11,7 +11,7 @@ import meltyGIF from "../assets/melty.gif";
 import jumpGIF from "../assets/jump.gif";
 import dancingSkeleton from "../assets/dancingSkeleton.gif";
 
-export default function ChallengeModal({session, challenge, callback, solved}) {
+export default function ChallengeModal({session, challenge, callback, close, solved}) {
     const [userInput, setInput] = useState("");
     const [isCorrect, setModal] = useState("default");
     const cookies = new Cookies(null, { path: '/' });
@@ -22,7 +22,7 @@ export default function ChallengeModal({session, challenge, callback, solved}) {
         const handleEsc = (event) => {
         if (event.key === 'Escape') {
             // close modal
-            callback(false)
+            close(false)
         }
         };
         window.addEventListener('keydown', handleEsc);
@@ -104,7 +104,7 @@ export default function ChallengeModal({session, challenge, callback, solved}) {
                         <p className='font-eater text-[#1D4440]'>{challenge.points} points || {challenge.category}</p>
                     </div>
 
-                    <button onClick={()=>{callback(false)}}>
+                    <button type="button" onClick={(event)=>{event.preventDefault(); close(false)}}>
                         <p className='absolute top-4 right-4 text-3xl cursor-pointer hover:scale-105 text-[#4A807B]' style={{lineHeight: '0.5'}}>x</p>
                     </button>
                 </div>

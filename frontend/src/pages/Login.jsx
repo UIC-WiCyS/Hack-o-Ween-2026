@@ -153,8 +153,8 @@ export default function Login({callback}) {
             )}
 
             <div className={styles.logos}>
-                <img src={WICYSLogo} alt="WiCyS" />
-                <img src={LUGLogo} className={styles.lugLogo} alt="LUG" />
+                <a href="https://uic-wicys.github.io/WiCySWebsite/"> <img src={WICYSLogo} alt="WiCyS" /></a>
+                <a href="https://lug.cs.uic.edu/"> <img src={LUGLogo} className={styles.lugLogo} alt="LUG" /></a>
             </div>
         </section>
     );

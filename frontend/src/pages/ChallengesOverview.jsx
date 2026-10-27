@@ -120,7 +120,7 @@ export default function ChallengesOverview({session}) {
             
             {/*check the boolean state && check there is a selected challenge && get the challenge*/}
             {openModal && selectedChallenge && (
-                <ChallengeModal session={session} challenge={selectedChallenge} callback={handle_solved} solved={completed.some(id => String(id) === String(selectedChallenge.id))} />
+                <ChallengeModal session={session} challenge={selectedChallenge} callback={handle_solved} close={setModal} solved={completed.some(id => String(id) === String(selectedChallenge.id))} />
             )}
         </section>
     );

@@ -2,13 +2,17 @@
     "cleanUrls": false,
     "rewrites": [
         {
-            "source": "/challenges/katherine_launch",
-            "destination": "/challenges/katherine_launch"
+            "source": "/challenges/halloween_lock",
+            "destination": "/challenges/halloween_lock"
+        },
+        {
+            "source": "/challenges/transmission",
+            "destination": "/challenges/transmission"
         }
     ],
     "routes": [
         { 
-            "source": "/((?!challenges/|assets/|animalsChallenges/).*)", 
+            "source": "/((?!challenges/|assets/).*)", 
             "dest": "/", 
             "status": 200 
         }

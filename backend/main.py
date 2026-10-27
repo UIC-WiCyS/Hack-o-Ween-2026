@@ -129,7 +129,7 @@ def get_all_challenges():
     try:
         print("Fetching all challenges")
         q = ['name', 'category', 'prompt', 'points', 'files', 'hints']
-        docs = db.collection("challenges").select(q).stream()
+        docs = db.collection("challenges").select(q).order_by("points", direction=firestore.Query.ASCENDING).stream()
         all_chals = []
         for doc in docs:
             all_chals.append({"id": doc.id} | doc.to_dict())
