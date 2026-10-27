@@ -10,10 +10,14 @@ import Cookies from 'universal-cookie';
 import meltyGIF from "../assets/melty.gif";
 import jumpGIF from "../assets/jump.gif";
 
+import stickyNote from "../assets/sticky_note.png";
 
-export default function ChallengeModal({session, challenge, callback}) {
+import dancingSkeleton from "../assets/dancingSkeleton.gif";
+
+export default function ChallengeModal({session, challenge, callback, jumpscaresEnabled}) {
     const [userInput, setInput] = useState("");
     const [isCorrect, setModal] = useState("default");
+    const [onJumpscare, setJumpscare] = useState(false);    
     const cookies = new Cookies(null, { path: '/' });
     
     useEffect(() => {
@@ -183,6 +187,14 @@ export default function ChallengeModal({session, challenge, callback}) {
                     </div>
                 }
                 </div>
+            }
+
+            {onJumpscare && (
+                <div className={styles.jumpscare}>
+                    <img src={dancingSkeleton}></img>
+
+                </div>
+            )
             }
         </div>
     );
