@@ -3,11 +3,14 @@ import styles from "./ChallengeModal.module.css";
 import { check_answer } from '../api/firebase_manager';
 import { Download } from 'lucide-react';
 import Hint from "./Hint"
+import stickyNote from "../assets/sticky_note.png";
 
-export default function ChallengeModal({session, challenge, callback}) {
+import dancingSkeleton from "../assets/dancingSkeleton.gif";
+
+export default function ChallengeModal({session, challenge, callback, jumpscaresEnabled}) {
     const [userInput, setInput] = useState("");
     const [isCorrect, setModal] = useState("default");
-
+    const [onJumpscare, setJumpscare] = useState(false);
     useEffect(() => {
         // handling esc key press
         const handleEsc = (event) => {
@@ -32,6 +35,12 @@ export default function ChallengeModal({session, challenge, callback}) {
         }
 
         var success = await check_answer(session.id, challenge.id, userInput);
+        if (jumpscaresEnabled && Math.floor(Math.random() * 5) == 1){
+            setJumpscare(true);
+            setTimeout(()=>{
+                setJumpscare (false);
+            }, 2000);
+        }
         if (success)
         {
             setModal("success")
@@ -53,8 +62,8 @@ export default function ChallengeModal({session, challenge, callback}) {
     }
 
     return (
-        <div id="challenge-modal" className={`absolute w-3/4 z-1000 top-1/8 left-1/8 h-3/4 overflow-y-scroll text-center bg-[#EAD3FF] border-[#812990] border-4 text-[#812990] font-eater p-6 px-10 flex flex-col gap-4'`} 
-            style={{scrollbarColor: "#1B529B #ffffff00", }}>
+        <div id="challenge-modal" className={`absolute w-3/4 z-1000 top-1/8 left-1/8 h-3/4 overflow-y-scroll text-center bg-[#EAD3FF] border-[#812990] border-4 text-[#812990] font-eater p-6 px-10 flex flex-col gap-4'`} >
+           
             <div className='flex justify-between flex-wrap-reverse text-wrap'>
                 <div className='font-eater text-left text-2xl'>
                     <p className='font-bold'>{challenge.name.toUpperCase()}</p>
@@ -124,6 +133,14 @@ export default function ChallengeModal({session, challenge, callback}) {
                     <p className='text-red-600'>Incorrect!</p>
                 }
             </form>
+
+            {onJumpscare && (
+                <div className={styles.jumpscare}>
+                    <img src={dancingSkeleton}></img>
+
+                </div>
+            )
+            }
         </div>
     );
 }
