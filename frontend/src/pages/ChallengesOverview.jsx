@@ -6,9 +6,10 @@ import { login, get_all_challenges } from "../api/firebase_manager";
 import Cookies from 'universal-cookie';
 
 export default function ChallengesOverview({session}) {
+    const cookies = new Cookies(null, { path: '/' });
     const [challenges, setChallenges] = useState([]);
     const [completed, setCompleted] = useState([]);
-    const [jumpscares, setJumpscares] = useState(false)
+    const [jumpscares, setJumpscares] = useState(cookies.get("jumpscares_cookie"))
     const [openModal, setModal] = useState(false); 
     const [selectedChallenge, setSelectedChallenge] = useState(null);
     const numChallenges = challenges.length;
@@ -23,7 +24,7 @@ export default function ChallengesOverview({session}) {
     // };
 
     const totalPoints = challenges.reduce((sum, challenge) => {
-    return sum + Number(challenge.points);
+        return sum + Number(challenge.points);
     }, 0);
 
     
@@ -88,15 +89,15 @@ export default function ChallengesOverview({session}) {
         <section className='font-eater text-white' style={{height: "75vh"}}>
             {/*<h1 className={styles.title}>Challenges Overview</h1>*/}
             <div className={styles.header}> 
-                <div className='text-left font-eater text-base'>
+                <div className='text-left font-eater text-lg'>
                     <p>Player: {session.id.toUpperCase()}</p>
                     <p>Sanity: {session.score}</p>
                 </div>
-                <div className='text-right font-eater text-base'>
+                <div className='text-right font-eater text-lg'>
                     <p>Status: {status}</p>
                     <button className={`${styles.toggle} ${jumpscares ? styles.toggleON:""}`} 
                     
-                    onClick={()=> setJumpscares(!jumpscares)} >
+                    onClick={()=> {cookies.set('jumpscares_cookie', !jumpscares); setJumpscares(!jumpscares)}} >
                     
                     Jump Scares: {jumpscares ? "ON" : "OFF"}</button>
                 </div>
@@ -119,7 +120,7 @@ export default function ChallengesOverview({session}) {
             
             {/*check the boolean state && check there is a selected challenge && get the challenge*/}
             {openModal && selectedChallenge && (
-                <ChallengeModal session={session} challenge={selectedChallenge} callback={handle_solved} jumpscaresEnabled={jumpscares} />
+                <ChallengeModal session={session} challenge={selectedChallenge} callback={handle_solved} solved={completed.some(id => String(id) === String(selectedChallenge.id))} />
             )}
         </section>
     );

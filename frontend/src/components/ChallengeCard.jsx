@@ -3,7 +3,7 @@ import X from "../assets/solved.png"
 
 export default function ChallengeCard({ onClick, name, points, category, solved, solvedImg }) {
     return (
-        <div onClick={() => {if (!solved) {onClick();}}} className={styles.singleChallenge}>
+        <div onClick={() => {onClick();}} className={styles.singleChallenge}>
 
             {solved ? ( 
                 <div>
