@@ -2,6 +2,14 @@
     "cleanUrls": false,
     "rewrites": [
         {
+            "source": "/challenges/costume_search.pcapng",
+            "destination": "/challenges/costume_search.pcapng"
+        },
+        {
+            "source": "/challenges/key.txt",
+            "destination": "/challenges/key.txt"
+        },
+        {
             "source": "/challenges/halloween_lock",
             "destination": "/challenges/halloween_lock"
         },
