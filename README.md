@@ -21,6 +21,7 @@ A Mini-CTF for Halloween 2026 @ UIC! Hosted by WiCyS x LUG
     * Your flask server will now be running on `localhost:PORT`! You can look at the terminal for the port number
     * Note: The port may load a page that says `Not Found     The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.`
     * Make sure the URLs and other deployment-dependent lines are changed to the local versions of those URLs as well (read `backend/README.md`)
+
 4. Frontend Setup
     * In a new terminal window (using the `+` button on top right of the terminal)
     * `cd frontend` to change directories to frontend
