@@ -1,7 +1,7 @@
 {
   "name": "Hack-o-Ween 2026 CTF",
   "private": true,
-  "version": "1.0.1",
+  "version": "1.1.1",
   "type": "module",
   "scripts": {
     "dev": "vite",
