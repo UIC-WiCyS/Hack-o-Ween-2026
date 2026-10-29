@@ -2,8 +2,20 @@
     "cleanUrls": false,
     "rewrites": [
         {
+            "source": "/challenges/dedware.pcapng",
+            "destination": "/challenges/dedware.pcapng"
+        },
+        {
+            "source": "/challenges/TheWitchesHome.pcapng",
+            "destination": "/challenges/TheWitchesHome.pcapng"
+        },
+        {
             "source": "/challenges/costume_search.pcapng",
             "destination": "/challenges/costume_search.pcapng"
+        },
+        {
+            "source": "/challenges/brain.txt",
+            "destination": "/challenges/brain.txt"
         },
         {
             "source": "/challenges/key.txt",
